@@ -65,14 +65,13 @@
     <div>
       <button class="btn" @click="removeCompletedTodos">remove completed todos</button>
     </div>
-
   </div>
+  
 </template>
 
 <script setup>
 import { ref, onMounted } from 'vue';
 import axios from 'axios';
-
 
 const todos = ref([]);
 const categories = ref([]);
@@ -100,6 +99,20 @@ onMounted(() => {
   loadCategories();
 });
 
+async function deleteTodo(index) {
+  const todoToDelete = todos.value[index];
+  
+  // Make an HTTP request to delete the todo in Vue.js
+  todos.value.splice(index, 1);
+
+  // Make an HTTP request to delete the todo in Payload CMS
+  try {
+    await axios.delete(`http://127.0.0.1:3000/api/Todo/${todoToDelete.id}`);
+  } catch (error) {
+    console.error('Error deleting todo:', error);
+  }
+}
+
 // function resetNewTodo() {
 //   newTodo.value.title = '';
 //   newTodo.value.description = '';
@@ -117,4 +130,5 @@ const newTodo = ref({
 function removeCompletedTodos() {
   todos.value = todos.value.filter((todo) => !todo.completed);
 }
+
 </script>

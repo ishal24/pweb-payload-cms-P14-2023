@@ -18,7 +18,7 @@ const Category = {
   hooks: {
     afterOperation: [
       async (args) => {
-        if (args.operation === "create") {
+        if (args.operation === "create"){
           await payload.create({
             collection: "Logs",
             data: {
@@ -28,7 +28,8 @@ const Category = {
               action: "Category Created",
             },
           });
-        } else if (args.operation === "deleteByID") {
+        } 
+        else if (args.operation === "deleteByID"){
           await payload.create({
             collection: "Logs",
             data: {
@@ -38,7 +39,8 @@ const Category = {
               action: "Category Deleted",
             },
           });
-        } else if (args.operation === "updateByID") {
+        } 
+        else if (args.operation === "updateByID"){
           await payload.create({
             collection: "Logs",
             data: {
