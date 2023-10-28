@@ -19,33 +19,36 @@ const Todo = {
     afterOperation: [
       async (args) => {
         if (args.operation === 'create'){
+          let logMessage = `Todo: [${args.result.name}], id: [${args.result.id}] created`;
           await payload.create({
             collection: 'Logs',
             data: {
               name: args.result.name,
-              log: args.result.id,
+              log: logMessage,
               timestamp: new Date(),
               action: 'Todo Created',
             },
           });
         } 
         else if (args.operation === 'deleteByID'){
+          let logMessage = `Todo: [${args.result.name}], id: [${args.result.id}] deleted`;
           await payload.create({
             collection: 'Logs',
             data: {
               name: args.result.name,
-              log: args.result.id,
+              log: logMessage,
               timestamp: new Date(),
               action: 'Todo Deleted',
             },
           });
         }
         else if (args.operation === 'updateByID'){
+          let logMessage = `Todo: [${args.result.name}], id: [${args.result.id}] updated`;
           await payload.create({
             collection: 'Logs',
             data: {
               name: args.result.name,
-              log: args.result.id,
+              log: logMessage,
               timestamp: new Date(),
               action: 'Todo Updated',
             },

@@ -22,6 +22,7 @@ const Logs = {
       },
       {
         name: 'log',
+        label: "message",
         type: 'text',
       },
       {
